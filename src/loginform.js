@@ -3,7 +3,7 @@ import "./login.css"
 import { useState } from "react"
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
-
+import "./index.css"
 
 function Loginuser() {
     const [login, register] = useState(true)
@@ -49,14 +49,14 @@ function Loginuser() {
             }).then((response) => {
 
                 if ((response.data.messege) === 'valid logged in') {
-
+                    console.log(response)
                     localStorage.setItem("access-token", response.data.token)
-
-                  
+                     localStorage.setItem("name",response.data.result.username)
+                 
                     alert("login Succesfull")
 
 
-                    history.push("/ver")
+                    history.push("/personalprofile")
                    
 
 
@@ -65,7 +65,7 @@ function Loginuser() {
                     var msg_login = response.data
                     alert(msg_login)
                 }
-            })
+            }).catch((Err)=> alert("user not registered"))
         } catch (err) {
             console.log(err)
         }
@@ -79,18 +79,10 @@ function Loginuser() {
 
     return (
         <>
+         <h1 className="title">Insta Profiles</h1>
             {login ?
                 <div className="loginForm">
-                    <h1 style={{
                    
-                    color:"white",
-                    fontFamily:"Italianno,cursive",
-                    fontSize:"4rem",
-                    textAlign:"center",
-                    margin:"0px",
-                    marginBottom:"20px"
-
-                    }}>Welcome to Insta</h1>
                     <input
                     
                         className="inputlogin"
