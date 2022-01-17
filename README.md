@@ -1,2 +1,2 @@
 <img src="public/insta.png" />
-<img src="" />
+<img src="public/insta1.png" />
